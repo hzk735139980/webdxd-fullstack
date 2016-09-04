@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 var cors = require('cors');
 // 当你从一个服务器发送到一个服务器时 判断是否允许回应
+var bodyParser= require('body-parser');
 
 mongoose.connect('mongodb://localhost/webdxd');
 // 连接mongodb 使用mongoose协议
@@ -63,6 +64,7 @@ var app = express();
 // one get= one event
 
 app.use(cors());
+app.use(bodyParser.json());
 
 // API
 app.get('/', function(req, res){
@@ -72,8 +74,8 @@ res.send('Hello World!');
 app.get('/student', function(req, res){
 		
 	Student.find().select('firstName age').exec(function(err, doc){
-		console.log(err);
-		console.log(doc);
+		// console.log(err);
+		// console.log(doc);
 		res.send(doc);
 		
 	})
@@ -87,6 +89,19 @@ app.get('/student/:id', function(req, res){
 	})
 });
 
+//2016.9.4
+app.post('/new',function(req, res){
+ var newStudent = new Student(req.body);
+	//read content in body
+	//前提先use
+	newStudent.save(function(err,doc){
+		//save in mongodb
+		console.log("doc", doc);
+		console.log(err);
+		res.send(doc);
+	});
+});
+//
 
 app.listen(3000);
 // port could be any num, but can not have more than one connect

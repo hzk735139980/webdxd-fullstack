@@ -8,32 +8,44 @@
 <!-- ng-app告诉要运行Webdxd -->
 <!-- {{app.student}} -->
 <!-- RE-NAME TO app -->
-	<div ng-repeat="student in app.student">
+	<!--<div ng-repeat="student in app.student">-->
 	<!-- pass student to unity -->
 	<!-- ng-click="app.selectStudent(student)" can also be write in the div-->
-		<h1 ng-hide="student.age > 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>
-	</div>
+		<!--<h1 ng-hide="student.age > 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>-->
+	<!--</div>-->
 
-	<div ng-show="app.selectedStudent">
-	<h2>{{app.selectedStudent.firstName}}{{app.selectedStudent.lastName}}</h2>
-	<h3>{{app.selectedStudent.email}}</h3>
-	<h4>{{app.selectedStudent.age}}</h4>
-	</div>
+	<!--<div>-->
+	<!--<h2>{{app.selectedStudent.firstName}}{{app.selectedStudent.lastName}}</h2>-->
+	<!--<h3>{{app.selectedStudent.email}}</h3>-->
+	<!--<h4>{{app.selectedStudent.age}}</h4>-->
+	<!--</div>-->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
-	<script src="/app.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>-->
+	<!--<script src="/app.js"></script>-->
 	<!-- 后面可有调用前面的requires -->
 
 <!-- simplfy -->
 <div ng-repeat="student in app.student" >
-		<h1 ng-show="student.age < 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>
+		<!--<h1 ng-show="student.age < 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>-->
+	<h1  ng-click="app.selectStudent(student)">{{student.firstName}}</h1>
 	</div>
+<button ng-click="app.addNew()">{{app.addNewButton}}</button>
 
 	<div ng-show="app.selectedStudent">
 	<h2>Full name: {{app.selectedStudent.fullName}}</h2>
 	<h3>Email: {{app.selectedStudent.email}}</h3>
 	<h4>Age: {{app.selectedStudent.age}}</h4>
 	</div>
+
+<form novalidate ng-show="app.addMode" >
+	<input type="text" name="firstName" placeholder="First Name" ng-model="app.newStudent.firstName">
+	<input type="text" name="lastName" placeholder="Last Name" ng-model="app.newStudent.lastName">
+	<input type="email" name="email" placeholder="Email" ng-model="app.newStudent.email">
+	<!-- connect with server-->
+	<button ng-click="app.submitForm()">Submit</button>
+
+
+</form>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 	<script src="/app.js"></script>
