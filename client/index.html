@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebDxD Student</title>
+
+</head>
+<body ng-app="Webdxd" ng-controller="AppCtrl as app">
+<!-- ng-app告诉要运行Webdxd -->
+<!-- {{app.student}} -->
+<!-- RE-NAME TO app -->
+	<div ng-repeat="student in app.student">
+	<!-- pass student to unity -->
+	<!-- ng-click="app.selectStudent(student)" can also be write in the div-->
+		<h1 ng-hide="student.age > 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>
+	</div>
+
+	<div ng-show="app.selectedStudent">
+	<h2>{{app.selectedStudent.firstName}}{{app.selectedStudent.lastName}}</h2>
+	<h3>{{app.selectedStudent.email}}</h3>
+	<h4>{{app.selectedStudent.age}}</h4>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+	<script src="/app.js"></script>
+	<!-- 后面可有调用前面的requires -->
+
+<!-- simplfy -->
+<div ng-repeat="student in app.student" >
+		<h1 ng-show="student.age < 25" ng-click="app.selectStudent(student)">{{student.firstName}}</h1>
+	</div>
+
+	<div ng-show="app.selectedStudent">
+	<h2>Full name: {{app.selectedStudent.fullName}}</h2>
+	<h3>Email: {{app.selectedStudent.email}}</h3>
+	<h4>Age: {{app.selectedStudent.age}}</h4>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+	<script src="/app.js"></script>
+	<!-- 后面可有调用前面的requires -->
+
+</body>
+</html>
